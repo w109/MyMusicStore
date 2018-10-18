@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+.dd{
+    margin: 100px auto;
+        width: 200px;
+        height: 200px;
+        position: relative;
+        animation: move 5s linear infinite;
+        transform-style: preserve-3d;
+        border: 3px dashed black;
+        border-radius: 50%;
+}
+.no1{
+    background-color: lightblue;
+}
+.no2{
+    background-color: cornsilk;
+}
+.no3{
+    background-color: darksalmon;
+}
+.no4{
+    background-color: pink;
+}
+.no5{
+    background-color: darkkhaki;
+}
+.no6{
+    background-color: sienna;
+}
+.no1,.no2,.no3,.no4,.no5,.no6{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "微软雅黑";
+    font-size: 50px;
+    text-align: center;
+    line-height: 200px;
+    opacity: 0.6;
+}
+ul li:nth-child(1){
+    transform: rotateY(-90deg) translateZ(100px);
+}
+ul li:nth-child(2){
+    transform: rotateY(90deg) translateZ(100px);
+}
+ul li:nth-child(3){
+    transform: rotateY(180deg) translateZ(100px);
+}
+ul li:nth-child(4){
+    transform: rotateY(360deg) translateZ(100px);
+}
+ul li:nth-child(5){
+    transform: rotateX(90deg) translateZ(100px);
+}
+ul li:nth-child(6){
+    transform: rotateX(-90deg) translateZ(100px);
+}
+@keyframes move{
+       0%{transform:rotateX(0deg) rotateY(0deg);}
+       100%{
+           transform:rotateX(360deg) rotateY(360deg);
+       }
+    }
+    @-webkit-keyframes move{
+        0%{transform:rotateX(0deg) rotateY(0deg);}
+        100%{
+           transform:rotateX(360deg) rotateY(360deg);
+       }
+    }
+   
+</style>
+<body>
+    <ul class="dd">
+            <li class="no1">左</li>
+            <li class="no2">右</li>
+            <li class="no3">后</li>
+            <li class="no4">前</li>
+            <li class="no5">上</li>
+            <li class="no6">下</li>
+    </ul>
+    
+</body>
+</html>
