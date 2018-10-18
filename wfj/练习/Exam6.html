@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .Dad{
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            border: 5px solid black;
+            position: relative;
+            /*视图效果*/
+            perspective: 500000px;
+            /*3d空间中显示*/
+             transform-style: preserve-3d;
+             /*过渡动画*/
+             transition: all 1s ease 0s;
+
+        }
+        .Dad:hover{
+            transform: rotateX(-90deg);
+        }
+        .Dad img{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .Dad img.no1{
+            transform: translateZ(100px);
+        }
+        .Dad img.no2{
+            transform: rotateX(90deg) translateZ(100px)
+        }
+    </style>
+</head>
+<body>
+        <div class="Dad">
+                    <img src="tp/1.png" class="no1">
+                    <img src="tp/2.png" class="no2">
+            </div>
+</body>
+</html>
