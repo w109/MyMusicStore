@@ -1,8 +1,10 @@
 ﻿using CodeFirst1108.DataContext;
+using CodeFirst1108.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CodeFirst1108.Migrations
@@ -11,7 +13,54 @@ namespace CodeFirst1108.Migrations
     {
         public static void Seed(StuDBContext context)
         {
+            #region 电子信息学生
+            var d1 = context.DepartMents.SingleOrDefault(x => x.Name == "电子信息工程学院");
+            for (var i = 0; i < 400; i++)
+            {
+                var fname = "";
+                var lname = "";
+                var fullname = _GetRandomChineseFullName(ref fname, ref lname);
 
+                var student = new Student()
+                {
+                    StudentNo = "DZXX" + i.ToString("0000"),
+                    FirstName = fname,
+                    LastName = lname,
+                    FullName = fullname,
+                    BirthDay = DateTime.Now,
+                    Address = "社湾路28号",
+                    Department = d1,
+                    Phone = "188********"
+                };
+                context.Students.Add(student);
+                Thread.Sleep(1);
+            }
+
+            #endregion
+
+            #region 机电学生
+            var d2 = context.DepartMents.SingleOrDefault(x => x.Name == "机电工程学院");
+            for (var i = 0; i < 300; i++)
+            {
+                var fname = "";
+                var lname = "";
+                var fullname = _GetRandomChineseFullName(ref fname, ref lname);
+
+                var student = new Student()
+                {
+                    StudentNo = "JDGC" + i.ToString("0000"),
+                    FirstName = fname,
+                    LastName = lname,
+                    FullName = fullname,
+                    BirthDay = DateTime.Now,
+                    Address = "社湾路28号",
+                    Department = d2,
+                    Phone = "188********"
+                };
+                context.Students.Add(student);
+                Thread.Sleep(1);
+            }
+            #endregion
         }
         public static string _GetRandomChineseFullName(ref string firstName, ref string lasrName)
         {
