@@ -2,4 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <asp:DropDownList ID="DropDownList1" runat="server">
+    </asp:DropDownList>
+
 </asp:Content>
