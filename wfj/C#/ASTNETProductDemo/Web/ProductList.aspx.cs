@@ -43,4 +43,40 @@ public partial class ProductList : System.Web.UI.Page
                 }
         _getData();
         }
+
+    protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        GridView1.EditIndex = e.NewEditIndex;
+        _getData();
+    }
+
+    //取消编辑
+    protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        GridView1.EditIndex = -1;
+        _getData();
+    }
+
+    //保存修改
+    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        var id = Guid.Parse(GridView1.DataKeys[e.RowIndex].Value.ToString());
+        using (var context = new ProductDbContext())
+        {
+            var p = context.Products.Find(id);
+
+            var row = GridView1.Rows[e.RowIndex];
+            var sn = (row.Cells[0].Controls[0] as TextBox).Text.Trim();
+            var name = (row.Cells[0].Controls[0] as TextBox).Text.Trim();
+            var dscn = (row.Cells[0].Controls[0] as TextBox).Text.Trim();
+
+            p.SN = sn;
+            p.Name = name;
+            p.DSCN = dscn;
+            context.SaveChanges();
+        }
+
+        GridView1.EditIndex = -1;
+        _getData();
+    }
 }
