@@ -1,4 +1,5 @@
 ﻿using DataContext;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,14 @@ public partial class ProductList : System.Web.UI.Page
             GridView1.DataSource = productList;
             GridView1.DataBind();
         }
+    }
+
+    //分类字段绑定的方法
+    protected string GetName(object obj)
+    {
+        if (obj != null)
+            return ((Category)obj).Name;
+        return "该商品未分类";
     }
 
     //翻页事件
