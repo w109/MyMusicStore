@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataContext;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,7 +15,8 @@ public partial class C : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Session["str"] = TextBox1.Text;
+        var categories = new ProductDbContext().Categories.ToList();
+        Session["C"] = categories;
         Response.Redirect("~/D.aspx");
     }
 }
