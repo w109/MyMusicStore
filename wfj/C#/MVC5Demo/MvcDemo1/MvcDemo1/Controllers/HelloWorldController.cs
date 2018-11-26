@@ -11,7 +11,7 @@ namespace MvcDemo1.Controllers
         // GET: HelloWorld
         public ActionResult Index()
         {
-            //return View("../../Views/Test/test1");
+            //return View("../../Views/Test/ test1");
             return View();
         }
 
