@@ -15,9 +15,12 @@ namespace MvcDemo1.Controllers
             return View();
         }
 
-        public string Welcome(string name,int id=1)
+        public ActionResult Welcome(string name,int id=1)
         {
-            return "您好,"+name+",欢迎次数："+id;
+            ViewBag.ID = id;
+            ViewBag.Name = name+", 您好！";
+            Session["message"] = "今天天气不错！！！";
+            return View();
         }
     }
 }
