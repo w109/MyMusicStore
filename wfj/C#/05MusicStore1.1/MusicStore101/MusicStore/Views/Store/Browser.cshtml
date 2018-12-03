@@ -6,19 +6,11 @@
     Layout = "~/Views/Shared/_NewLayout.cshtml";
 
     var album = Model.FirstOrDefault();
-    var genreName = "";
-    if(album!=null)
-    {
-        genreName = album.Genre.Name;
-    }
-    else
-    {
-        genreName = "找不到";
-    }
+    var genreName = album!=null? album.Genre.Name: "找不到";
 }
 
 <div class="genre">
-    <h3><em>genreName</em>专辑</h3>
+    <h3><em>@genreName</em>专辑</h3>
     <ul id="album-list">
         @foreach(var item in Model)
         {
