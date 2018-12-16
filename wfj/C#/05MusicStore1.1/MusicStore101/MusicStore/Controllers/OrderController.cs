@@ -167,7 +167,14 @@ namespace MusicStore.Controllers
         public ActionResult Index()
         {
             //是否登录
-            return View();
+            if (Session["LoginUserSessionModel"] == null)
+                return RedirectToAction("login", "Account", new { returnUrl = Url.Action("Index", "Order") });
+
+            //
+            var person = (Session["LoginUserSessionModel"] as LoginUserSessionModel).Person;
+            var orders = _context.Orders.Where(x => x.Person.ID == person.ID).ToList();
+
+            return View(orders);
         }
     }
 }
