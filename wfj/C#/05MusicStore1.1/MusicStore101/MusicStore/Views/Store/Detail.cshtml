@@ -47,29 +47,58 @@
         <a class="btn" id="addcart">添加到购物车</a>
         <div id="msg"></div>
     </p>
-
-    <div>
-        <!-- 加载编辑器的容器 -->
-        <script id="container" name="content" type="text/plain">
-            这里写你的初始化内容
-        </script>
-        <!-- 配置文件 -->
-        <script type="text/javascript" src="~/Content/ueditor1_4_3-utf8-net/ueditor.config.js"></script>
-        <!-- 编辑器源码文件 -->
-        <script type="text/javascript" src="~/Content/ueditor1_4_3-utf8-net/ueditor.all.js"></script>
-
-        <!-- 实例化编辑器 -->
-        <script type="text/javascript">
-        var ue = UE.getEditor('container');
-        </script>
     </div>
-    <p>
-        <textarea id="reply" rows="3" cols="13"></textarea>
-        <button class="btn btn-primary" id="btnreply">评论</button>
-    </p>
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="form-group">
+            <textarea id="editor" name="editor"></textarea>
+        </div>
+        <button id="btnCmt" type="button" class="btn btn-success">评论</button>
+    </div>
 </div>
 
 <script>
+    //百度编辑器调用
+    var editor = new baidu.editor.ui.Editor({
+        UEDITOR_HOME_URL: '/ueditor/',
+        iframeCssurl: '/ueditor/themes/iframe.css',
+        initialContent: '五星好评',
+        autoHeightEnabld: true,
+        minFrameHeight:500
+    });
+    editor.render('editor');
+
+    //提交回复
+    $("#btnCmt").click(function () {
+        //获得编辑器中的内容
+        UE.getEditor('editor');
+        var content = UE.getEditor('editor').getContent();
+        //
+        //
+        $.ajax({
+            type: 'post',
+            asyn: true,
+            url: '@Url.Action("AddCmt","Store")',
+            data: {
+                "id": "@Model.ID",
+                "cmt": content,
+                "reply":""
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data == 'nologin') {
+                    //如果没有登录
+                    location.href = "@Url.Action("login","Account",
+                                  new { returnUrl = Url.Action("Detail", "Store", new { id=Model.ID})})";
+                } else if (data == "OK") {
+                    alert('发表成功！');
+                    //局部刷新
+                }
+            }
+        })
+    });
+
     $("#addcart").click(function() {
         //异步
         $("#msg").html("<img src='../../content/images/loading.gif'>添加到购物车，请稍候...");

@@ -34,8 +34,34 @@
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
         , toolbars: [
-    ['fullscreen', 'source', 'undo', 'redo'],
-    ['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc']
+    [
+        'undo', //撤销
+        'redo', //重做
+        'bold', //加粗
+        'indent', //首行缩进
+        'snapscreen', //截图
+        'italic', //斜体
+        'underline', //下划线
+        'strikethrough', //删除线
+        'subscript', //下标
+        'fontborder', //字符边框
+        'superscript', //上标
+        'formatmatch', //格式刷
+        'source', //源代码
+        'selectall', //全选
+        'fontfamily', //字体
+        'fontsize', //字号
+        'simpleupload', //单图上传
+        'insertimage', //多图上传
+        'link', //超链接
+        'emotion', //表情
+        'spechars', //特殊字符
+        'insertvideo', //视频
+        'help', //帮助
+        'forecolor', //字体颜色
+        'scrawl', //涂鸦
+        'music', //音乐
+    ]
         ]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
