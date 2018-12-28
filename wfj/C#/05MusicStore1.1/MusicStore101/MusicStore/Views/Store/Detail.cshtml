@@ -74,7 +74,8 @@
         <div class="modal-content" id="Div-SonCmts">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"
-                        aria-hidden="true">×
+                        aria-hidden="true">
+                    ×
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
                     原回复
@@ -124,7 +125,18 @@
 
     function ShowCmt(id) {
         //ajax 查询出子回复
-        $('#myModal').modal('toggle');
+        $.ajax({
+            type: 'post',
+            asyn: true,
+            url: '@Url.Action("showCmts","Store")',
+            data: {"pid":id},
+            dataType: 'json',
+            success: function (data) {
+                $("#Div-SonCmts").html(data);
+                $('#myModal').modal('toggle');
+            }
+        });
+
     }
 
 </script>
@@ -139,6 +151,7 @@
         minFrameHeight:500   //编辑器最小的高度
     });
     editor.render('editor');
+
     //提交回复
     $("#btnCmt").click(function () {
         //获得编辑器中的内容

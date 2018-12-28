@@ -33,20 +33,20 @@ namespace MusicStore.Controllers
         /// <returns></returns>
         private string _GetHtml(List<Reply> cmt)
         {
-                var htmlString = "";
-                htmlString += "<ul class='media-list'>";
-                foreach (var item in cmt)
-                {
-                    htmlString += "<li class='media'>";
-                    htmlString += "<div class='media-left'>";
-                    htmlString += "<img class='media-object' src='" + item.Person.Avarda +
-                                  "' alt='头像' style='width:40px;border-radius:50%;'>";
-                    htmlString += "</div>";
-                    htmlString += "<div class='media-body' id='Content-" + item.ID + "'>";
-                    htmlString += "<h5 class='media-heading'>" + item.Person.Name + "  发表于" +
-                                  item.CreateDateTime.ToString("yyyy年MM月dd日 hh点mm分ss秒") + "</h5>";
-                    htmlString += item.Content;
-                    htmlString += "</div>";
+            var htmlString = "";
+            htmlString += "<ul class='media-list'>";
+            foreach (var item in cmt)
+            {
+                htmlString += "<li class='media'>";
+                htmlString += "<div class='media-left'>";
+                htmlString += "<img class='media-object' src='" + item.Person.Avarda +
+                              "' alt='头像' style='width:40px;border-radius:50%;'>";
+                htmlString += "</div>";
+                htmlString += "<div class='media-body' id='Content-" + item.ID + "'>";
+                htmlString += "<h5 class='media-heading'>" + item.Person.Name + "  发表于" +
+                              item.CreateDateTime.ToString("yyyy年MM月dd日 hh点mm分ss秒") + "</h5>";
+                htmlString += item.Content;
+                htmlString += "</div>";
                 //查询当前回复的下一级回复
                 var sonCmt = _context.Replies.Where(x => x.ParentReply.ID == item.ID).ToList();
                 htmlString += "<h6><a href='#div-editor' class='reply' onclick=\"javascript:GetQuote('" + item.ID +
@@ -95,9 +95,29 @@ namespace MusicStore.Controllers
 
             //局部刷新显示成最新的评论
             var replies = _context.Replies.Where(x => x.Album.ID == album.ID && x.ParentReply == null)
-               .OrderByDescending(x => x.CreateDateTime).ToList();
+                .OrderByDescending(x => x.CreateDateTime).ToList();
             return Json(_GetHtml(replies));
-            
+        }
+
+        [HttpPost]
+        public ActionResult showCmts(string pid)
+        {
+            var htmlString = "";
+            //子回复
+            Guid id = Guid.Parse(pid);
+            var cmts = _context.Replies.Where(x => x.ParentReply.ID == id).OrderByDescending(x => x.CreateDateTime).ToList();
+            //原回复
+            var pcmt = _context.Replies.Find(id);
+            htmlString += "<div class=\"modal-header\">";
+            htmlString += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">×</button>";
+            htmlString += "<h4 class=\"modal-title\" id=\"myModalLabel\">";
+            htmlString += "<em>楼主&nbsp&nbsp</em>" + pcmt.Person.Name + "  发表于" + pcmt.CreateDateTime.ToString("yyyy年MM月dd日 hh点mm分ss秒") + ":<br/>" + pcmt.Content;
+            htmlString += " </h4> </div>";
+
+            htmlString += "<div class=\"modal-body\">";
+            //子回复
+            htmlString += "</div><div class=\"modal-footer\"></div>";
+            return Json(htmlString);
         }
 
         /// <summary>
