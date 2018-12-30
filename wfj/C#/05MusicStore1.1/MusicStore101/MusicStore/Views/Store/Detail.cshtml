@@ -139,6 +139,36 @@
 
     }
 
+    //点赞
+    function Like(id) {
+        $.ajax({
+            type: 'post',
+            asyn: true,
+            url: '@Url.Action("Like","Store")',
+            data: { "pid": id },
+            dataType: 'json',
+            success: function (data) {
+                //detail
+                //modal
+            }
+        });
+    }
+    //踩
+    function hate(id) {
+        $.ajax({
+            type: 'post',
+            asyn: true,
+            url: '@Url.Action("Hate","Store")',
+            data: { "pid": id },
+            dataType: 'json',
+            success: function (data) {
+                //detail
+                //modal
+            }
+        });
+    }
+
+
 </script>
 
 <script>
