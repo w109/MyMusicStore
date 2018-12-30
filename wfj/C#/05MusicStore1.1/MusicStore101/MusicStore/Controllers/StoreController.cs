@@ -80,6 +80,7 @@ namespace MusicStore.Controllers
             return htmlString;
         }
 
+
         [HttpPost]
         [ValidateInput(false)]   //关闭验证
         public ActionResult AddCmt(string id, string cmt, string reply)
@@ -131,7 +132,7 @@ namespace MusicStore.Controllers
             htmlString += "<div class=\"modal-header\">";
             htmlString += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">×</button>";
             htmlString += "<h4 class=\"modal-title\" id=\"myModalLabel\">";
-            htmlString += "<em>楼主&nbsp&nbsp</em>" + pcmt.Person.Name + "  发表于" + pcmt.CreateDateTime.ToString("yyyy年MM月dd日 hh点mm分ss秒") + ":<br/>" + pcmt.Content;
+            htmlString += "<em>楼主&nbsp;&nbsp;</em>" + pcmt.Person.Name + "  发表于" + pcmt.CreateDateTime.ToString("yyyy年MM月dd日 hh点mm分ss秒") + ":<br/>" + pcmt.Content;
             htmlString += " </h4> </div>";
 
             htmlString += "<div class=\"modal-body\">";

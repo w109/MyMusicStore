@@ -84,7 +84,7 @@
             <div class="modal-body">
                 子回复。。。<a href='#' class='reply' style='margin:0 20px 0 40px'><i class='glyphicon glyphicon-thumbs-up'></i>(0)</a><a href='#' class='reply' style='margin:0 20px'><i class='glyphicon glyphicon-thumbs-down'></i>(0)</a><br />
                 子回复。。。<a href='#' class='reply' style='margin:0 20px 0 40px'><i class='glyphicon glyphicon-thumbs-up'></i>(0)</a><a href='#' class='reply' style='margin:0 20px'><i class='glyphicon glyphicon-thumbs-down'></i>(0)</a><br />
-                子回复。。。<a href='#' class='reply' style='margin:0 20px 0 40px'><i class='glyphicon glyphicon-thumbs-up'></i>(0)</a><a href='#' class='reply' style='margin:0 20px'><i class='glyphicon glyphicon-thumbs-down'></i>(0)</a><br />子回复。。。<a href='#' class='reply' style='margin:0 20px 0 40px'><i class='glyphicon glyphicon-thumbs-up'></i>(0)</a><a href='#' class='reply' style='margin:0 20px'><i class='glyphicon glyphicon-thumbs-down'></i>(0)</a><br />
+                子回复。。。<a href='#' class='reply' style='margin:0 20px 0 40px'><i class='glyphicon glyphicon-thumbs-up'></i>(0)</a><a href='#' class='reply' style='margin:0 20px'><i class='glyphicon glyphicon-thumbs-down'></i>(0)</a><br />
                 子回复。。。<a href='#' class='reply' style='margin:0 20px 0 40px'><i class='glyphicon glyphicon-thumbs-up'></i>(0)</a><a href='#' class='reply' style='margin:0 20px'><i class='glyphicon glyphicon-thumbs-down'></i>(0)</a><br />
                 子回复。。。<a href='#' class='reply' style='margin:0 20px 0 40px'><i class='glyphicon glyphicon-thumbs-up'></i>(0)</a><a href='#' class='reply' style='margin:0 20px'><i class='glyphicon glyphicon-thumbs-down'></i>(0)</a><br />
                 子回复。。。<a href='#' class='reply' style='margin:0 20px 0 40px'><i class='glyphicon glyphicon-thumbs-up'></i>(0)</a><a href='#' class='reply' style='margin:0 20px'><i class='glyphicon glyphicon-thumbs-down'></i>(0)</a><br />
@@ -111,10 +111,11 @@
     function GetQuote(id) {
         //保存该评论的id
         $("#pReplyID").val(id);
-        alert($("#pReplyID").val());
+        //alert($("#pReplyID").val());
         //取回复的内容
         var divName = 'Content-' + id;
         var content = "<p></p>" + $("#" + divName).html();
+
 
         //把内容赋值给ueditor
         var ue = UE.getEditor('editor');
@@ -136,7 +137,6 @@
                 $('#myModal').modal('toggle');
             }
         });
-
     }
 
     //点赞
