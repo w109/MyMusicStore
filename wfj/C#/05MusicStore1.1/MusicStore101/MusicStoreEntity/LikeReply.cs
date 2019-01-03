@@ -13,6 +13,7 @@ namespace MusicStoreEntity
   public  class LikeReply
     {
         public Guid ID { get; set; }
+        public virtual Reply Reply { get; set; }
         public bool IsNotLike { get; set; } //like保存true hate促false
         public virtual Person Person { get; set; }
         public DateTime CreateDateTime { get; set; }
